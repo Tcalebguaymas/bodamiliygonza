@@ -8,8 +8,12 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        /* AQUI VA EL CÓDIGO CSS */
+        /* ================================================= */
+        /* ESTILOS GENERALES Y TIPOGRAFÍAS */
+        /* ================================================= */
         body {
             /* Dejé Arial como fuente de respaldo para el resto del texto */
             font-family: 'Arial', sans-serif;
@@ -19,6 +23,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         header {
@@ -30,15 +35,14 @@
         }
 
         h1 {
-            /* PASO 2: APLICACIÓN DE LA FUENTE CURSIVA AL TÍTULO PRINCIPAL */
+            /* FUENTE CURSIVA: Mili & Gonza */
             font-family: 'Great Vibes', cursive;
             font-size: 4em;
-            /* La hice un poco más grande para que se destaque */
             margin-bottom: 0.2em;
         }
 
         h2 {
-            /* ¡CAMBIO A LA NUEVA FUENTE ELEGANTE! */
+            /* FUENTE ELEGANTE: ¡Nos Casamos! */
             font-family: 'Cinzel', serif;
             font-size: 1.8em;
             font-weight: 700;
@@ -62,33 +66,46 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Puedes aplicar la fuente cursiva a los subtítulos (h3) también, si quieres: */
+        /* Subtítulos de sección (Ej: Cuenta Regresiva) */
         .section h3 {
             font-family: 'Great Vibes', cursive;
             font-size: 2em;
+            color: #070707;
+            border-bottom: 2px solid #ccd6ce;
+            /* Usamos el color claro del contador como línea */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
 
+        /* ================================================= */
+        /* CONTADOR DE TIEMPO (CLAVE PARA MÓVILES) */
+        /* ================================================= */
         .contador {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-top: 20px;
+            /* Permite que las cajas se apilen en pantallas pequeñas */
+            flex-wrap: wrap;
         }
 
         .caja-tiempo {
             background-color: #ccd6ce;
-            /* Verde Agua Pastel */
+            /* Verde Oliva/Claro */
             color: #333;
             padding: 15px 20px;
             border-radius: 8px;
             font-size: 1.2em;
             min-width: 80px;
+            flex-basis: 20%;
+            /* Espacio que ocupa en la fila */
         }
 
         .numero {
             font-size: 2.5em;
             display: block;
             font-weight: bold;
+            line-height: 1.1;
         }
 
         .etiqueta {
@@ -96,9 +113,65 @@
             text-transform: uppercase;
         }
 
-        /* Más estilos para otros elementos si se añaden más secciones */
         .info-boda p {
             line-height: 1.6;
+        }
+
+        /* ================================================= */
+        /* MEDIA QUERIES (ADAPTACIÓN A PANTALLAS PEQUEÑAS) */
+        /* ================================================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 30px 10px;
+            }
+
+            /* Achicamos los títulos principales */
+            h1 {
+                font-size: 3em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+                letter-spacing: 1px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+
+            /* Subtítulos de sección más pequeños */
+            .section h3 {
+                font-size: 1.6em;
+            }
+
+            /* OPTIMIZACIÓN DEL CONTADOR EN MÓVILES */
+            .contador {
+                gap: 8px;
+                /* Reducimos el espacio entre las cajas */
+            }
+
+            .caja-tiempo {
+                min-width: 65px;
+                padding: 10px 5px;
+                /* Hacemos que cada caja ocupe ~23% para que quepan 4 en la fila */
+                flex-basis: 20%;
+            }
+
+            .numero {
+                font-size: 1.8em;
+                /* Números más pequeños */
+            }
+
+            .etiqueta {
+                font-size: 0.7em;
+                /* Etiquetas más pequeñas */
+            }
         }
     </style>
 </head>
@@ -146,7 +219,7 @@
     </div>
 
     <script>
-        const fechaBoda = new Date('November 29, 2025 20:00:00').getTime(); // La fecha y hora de la boda
+        const fechaBoda = new Date('November 29, 2025 20:00:00').getTime();
 
         function actualizarContador() {
             const ahora = new Date().getTime();
