@@ -4,253 +4,547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Nos Casamos! - Mili & Gonza</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <title>¡Nos Casamos! Mili & Gonza</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* ================================================= */
-        /* ESTILOS GENERALES Y TIPOGRAFÍAS */
-        /* ================================================= */
+        /* --- VARIABLES Y ESTILOS BASE --- */
+        :root {
+            --color-primary: #A48374;
+            --color-secondary: #5a5a5a;
+            --color-accent: #CBAD8D;
+            --bg-color: #fcf8f6;
+            --card-bg: #fdfdfd;
+            --card-border: #eee;
+        }
+
         body {
-            /* Dejé Arial como fuente de respaldo para el resto del texto */
-            font-family: 'Arial', sans-serif;
-            background-color: #abb1b1;
-            /* Fondo Grisáceo/Verde */
-            color: #333;
-            text-align: center;
+            background-color: var(--bg-color);
+            color: var(--color-secondary);
+            font-family: 'Cormorant Garamond', serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            box-sizing: border-box;
         }
 
-        header {
-            background-color: #8db69b;
-            /* Encabezado Verde Oliva */
-            color: white;
-            padding: 40px 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            /* FUENTE CURSIVA: Mili & Gonza */
-            font-family: 'Great Vibes', cursive;
-            font-size: 4em;
-            margin-bottom: 0.2em;
-        }
-
-        h2 {
-            /* FUENTE ELEGANTE: ¡Nos Casamos! */
-            font-family: 'Cinzel', serif;
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #070707;
-            margin-top: 0;
-            letter-spacing: 2px;
-        }
-
-
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .section {
+        /* Contenedor principal: Se adapta al 90% del ancho y tiene un máximo */
+        .invitation-container {
+            padding: 50px 30px;
+            max-width: 550px;
+            width: 90%;
+            border: 1px solid #e0d9d0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
             background-color: white;
-            margin: 20px 0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
         }
 
-        /* Subtítulos de sección (Ej: Cuenta Regresiva) */
-        .section h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2em;
-            color: #070707;
-            border-bottom: 2px solid #ccd6ce;
-            /* Usamos el color claro del contador como línea */
-            padding-bottom: 10px;
+        /* --- NOMBRES Y TÍTULOS --- */
+        .names {
             margin-bottom: 20px;
         }
 
-        /* ================================================= */
-        /* CONTADOR DE TIEMPO (CLAVE PARA MÓVILES) */
-        /* ================================================= */
-        .contador {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            /* Permite que las cajas se apilen en pantallas pequeñas */
-            flex-wrap: wrap;
-        }
-
-        .caja-tiempo {
-            background-color: #ccd6ce;
-            /* Verde Oliva/Claro */
-            color: #333;
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-size: 1.2em;
-            min-width: 80px;
-            flex-basis: 20%;
-            /* Espacio que ocupa en la fila */
-        }
-
-        .numero {
-            font-size: 2.5em;
-            display: block;
-            font-weight: bold;
+        .names h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5em;
+            /* Tamaño ajustado para móvil */
+            color: var(--color-primary);
+            margin: -10px 0;
             line-height: 1.1;
         }
 
-        .etiqueta {
-            font-size: 0.8em;
+        .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
+            color: var(--color-primary);
+            margin: 5px 0;
+        }
+
+        .intro p {
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            color: var(--color-secondary);
+        }
+
+        /* --- TEMPORIZADOR --- */
+        .countdown-timer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 10px 0;
+            border-top: 1px solid var(--color-accent);
+            border-bottom: 1px solid var(--color-accent);
+        }
+
+        .countdown-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 50px;
+        }
+
+        .countdown-unit span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
+            /* Tamaño clave para móvil */
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .countdown-unit p {
+            margin-top: 5px;
+            font-size: 0.7em;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-secondary);
         }
 
-        .info-boda p {
-            line-height: 1.6;
+        /* --- DETALLES DE EVENTO --- */
+        .event-details {
+            display: flex;
+            flex-direction: column;
+            /* FORZAMOS APILAMIENTO EN CELULAR */
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        /* ================================================= */
-        /* MEDIA QUERIES (ADAPTACIÓN A PANTALLAS PEQUEÑAS) */
-        /* ================================================= */
+        .ceremonia,
+        .salon {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid var(--card-border);
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
 
-        @media (max-width: 600px) {
+        .event-details h4 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8em;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
 
-            header {
-                padding: 30px 10px;
+        .event-details p {
+            font-size: 0.95em;
+            line-height: 1.4;
+            margin: 5px 0;
+            color: var(--color-secondary);
+        }
+
+        .map-button {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-top: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .map-button:hover {
+            background-color: #8b6e61;
+        }
+
+        /* --- MODAL DE MAPAS (Optimizado para cubrir toda la pantalla) --- */
+        .map-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .map-content {
+            background: white;
+            padding: 0;
+            border-radius: 5px;
+            max-width: 95%;
+            /* Más ancho en móvil */
+            max-height: 95%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-content iframe {
+            display: block;
+            width: 100%;
+            height: 90vh;
+            /* Ajuste para que el mapa quepa bien */
+            min-width: 300px;
+            min-height: 300px;
+        }
+
+        .close-button {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 1001;
+        }
+
+        /* --- GALERÍA DE FOTOS (CARRUSEL) --- */
+        .gallery-section {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .gallery-section h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2em;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .carousel-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(164, 131, 116, 0.7);
+            color: white;
+            border: none;
+            padding: 8px;
+            /* Padding más pequeño en móvil */
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-size: 1.2em;
+        }
+
+        .carousel-nav-button:hover {
+            opacity: 1;
+        }
+
+        #prevButton {
+            left: 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        #nextButton {
+            right: 0;
+            border-radius: 5px 0 0 5px;
+        }
+
+        /* --- SECCIONES ADICIONALES --- */
+        .music-section {
+            margin-top: 50px;
+            padding: 30px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+            color: var(--color-secondary);
+        }
+
+        .music-section h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-secondary);
+        }
+
+        .music-section p {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            /* Ajuste para móvil */
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .suggest-button {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .suggest-button:hover {
+            background-color: #8b6e61;
+        }
+
+        .dress-code-section {
+            margin-top: 40px;
+            padding: 30px 20px;
+            border: 1px solid var(--card-border);
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .dress-code-section h5 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8em;
+            /* Ajuste para móvil */
+            color: var(--color-primary);
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+
+        .dress-code-section p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1em;
+            color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        /* Media Query para escritorio (aplica solo cuando el ancho es mayor a 600px) */
+        @media (min-width: 600px) {
+            .invitation-container {
+                padding: 50px;
             }
 
-            /* Achicamos los títulos principales */
-            h1 {
-                font-size: 3em;
+            .names h1 {
+                font-size: 4em;
             }
 
-            h2 {
-                font-size: 1.2em;
-                letter-spacing: 1px;
+            .countdown-unit span {
+                font-size: 2.2em;
             }
 
-            .container {
-                padding: 10px;
-            }
-
-            .section {
-                padding: 20px 15px;
-            }
-
-            /* Subtítulos de sección más pequeños */
-            .section h3 {
-                font-size: 1.6em;
-            }
-
-            /* OPTIMIZACIÓN DEL CONTADOR EN MÓVILES */
-            .contador {
-                gap: 8px;
-                /* Reducimos el espacio entre las cajas */
-            }
-
-            .caja-tiempo {
-                min-width: 65px;
-                padding: 10px 5px;
-                /* Hacemos que cada caja ocupe ~23% para que quepan 4 en la fila */
-                flex-basis: 20%;
-            }
-
-            .numero {
-                font-size: 1.8em;
-                /* Números más pequeños */
-            }
-
-            .etiqueta {
-                font-size: 0.7em;
-                /* Etiquetas más pequeñas */
+            .event-details {
+                flex-direction: row;
+                /* Pone las tarjetas de evento lado a lado */
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="invitation-container">
 
-    <header>
-        <h1>Mili <small>&</small> Gonza</h1>
-        <h2>¡Nos casamos!</h2>
-    </header>
+        <div class="names">
+            <h1 class="script-font">Mili</h1>
+            <h2 class="ampersand">&</h2>
+            <h1 class="script-font">Gonza</h1>
+        </div>
 
-    <div class="container">
+        <div class="intro">
+            <p>¡Nos casamos!</p>
+        </div>
 
-        <div class="section">
-            <h3>¡Cuenta Regresiva!</h3>
-
-            <div class="contador" id="contador">
-                <div class="caja-tiempo">
-                    <span class="numero" id="dias">00</span>
-                    <span class="etiqueta">Días</span>
-                </div>
-                <div class="caja-tiempo">
-                    <span class="numero" id="horas">00</span>
-                    <span class="etiqueta">Horas</span>
-                </div>
-                <div class="caja-tiempo">
-                    <span class="numero" id="minutos">00</span>
-                    <span class="etiqueta">Minutos</span>
-                </div>
-                <div class="caja-tiempo">
-                    <span class="numero" id="segundos">00</span>
-                    <span class="etiqueta">Segundos</span>
-                </div>
+        <div class="countdown-timer">
+            <div class="countdown-unit">
+                <span id="days">00</span>
+                <p>Días</p>
+            </div>
+            <div class="countdown-unit">
+                <span id="hours">00</span>
+                <p>Horas</p>
+            </div>
+            <div class="countdown-unit">
+                <span id="minutes">00</span>
+                <p>Minutos</p>
+            </div>
+            <div class="countdown-unit">
+                <span id="seconds">00</span>
+                <p>Segundos</p>
             </div>
         </div>
 
-        <div class="section info-boda">
-            <h3>Ceremonia</h3>
-            <p><strong>Fecha:</strong> Sábado, 29 de Noviembre de 2025</p>
-            <p><strong>Hora:</strong> 20:00 hs</p>
-            <p><strong>Lugar:</strong> ...</p>
-            <p>¡Esperamos verte para celebrar con nosotros este día tan especial!</p>
+        <div class="date-location">
+            <h3 class="serif-font">Sábado, 29 de Noviembre de 2025</h3>
         </div>
+
+        <div class="event-details">
+            <div class="ceremonia">
+                <h4>Ceremonia</h4>
+                <p>Iglesia JeaCasanova</p>
+                <p>Hora: 19:00 hs</p>
+                <p>Dirección: Juan Manuel de Rosas 7354, Casanova</p>
+                <button class="map-button" onclick="openMap('ceremonia')">Cómo Llegar</button>
+            </div>
+
+            <div class="salon">
+                <h4>Salón</h4>
+                <p>Jackson Eventos</p>
+                <p>Hora: 21:00 hs</p>
+                <p>Dirección: Av. Gaona 1722, Ramos Mejia</p>
+                <button class="map-button" onclick="openMap('salon')">Cómo Llegar</button>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <h2>Nuestros Momentos</h2>
+            <div class="carousel-container">
+                <button id="prevButton" class="carousel-nav-button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-item">
+                        <img src="./foto-mili-gonza-1.jpg" alt="Mili y Gonza 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./foto-mili-gonza-2.jpg" alt="Mili y Gonza 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./foto-mili-gonza-3.jpg" alt="Mili y Gonza 3">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./foto-mili-gonza-4.jpg" alt="Mili y Gonza 4">
+                    </div>
+                </div>
+
+                <button id="nextButton" class="carousel-nav-button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="music-section">
+            <h5>¿Qué canciones no pueden faltar en la fiesta?</h5>
+            <p>¡Queremos crear una lista inolvidable!</p>
+            <a href="#AÑADIR_ENLACE_AQUI" target="_blank" class="suggest-button">SUGERIR CANCIÓN</a>
+        </div>
+
+        <div class="dress-code-section">
+            <h5>Código de Vestimenta</h5>
+            <p>Les pedimos asistir con **Vestimenta Elegante Sport**</p>
+        </div>
+
+        <p class="serif-font" style="margin-top: 40px; font-style: italic;">¡Confirmá tu asistencia antes del
+            01/11/2025!</p>
 
     </div>
 
+    <div class="map-modal" id="mapModal">
+        <span class="close-button" onclick="closeMap()">×</span>
+        <div class="map-content">
+            <iframe id="mapIframe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
     <script>
-        const fechaBoda = new Date('November 29, 2025 20:00:00').getTime();
+        // --- JAVASCRIPT DEL TEMPORIZADOR ---
+        const weddingDate = new Date("November 29, 2025 18:00:00").getTime();
 
-        function actualizarContador() {
-            const ahora = new Date().getTime();
-            const distancia = fechaBoda - ahora;
+        const countdownFunction = setInterval(function () {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
 
-            // Cálculos de tiempo
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Mostrar el resultado en los elementos correspondientes
-            document.getElementById('dias').innerText = dias.toString().padStart(2, '0');
-            document.getElementById('horas').innerText = horas.toString().padStart(2, '0');
-            document.getElementById('minutos').innerText = minutos.toString().padStart(2, '0');
-            document.getElementById('segundos').innerText = segundos.toString().padStart(2, '0');
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
 
-            // Si la cuenta regresiva termina (la boda ha pasado)
-            if (distancia < 0) {
-                clearInterval(intervalo);
-                document.getElementById('contador').innerHTML = '<h2>¡YA NOS CASAMOS! ¡Felicidades!</h2>';
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.querySelector(".countdown-timer").innerHTML = "¡FELICIDADES A LOS RECIÉN CASADOS!";
+                document.querySelector(".countdown-timer").style.fontSize = "1.5em";
+                document.querySelector(".countdown-timer").style.color = "var(--color-primary)";
+            }
+        }, 1000);
+
+        // --- JAVASCRIPT DEL MODAL Y MAPAS ---
+        const mapIframes = {
+            salon: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.744247826904!2d-58.5552486!3d-34.63590279999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc7fd68b0cbdf%3A0x38e917b87a34c683!2sJackson%20Eventos!5e0!3m2!1ses!2sar!4v1759797612841!5m2!1ses!2sar',
+            ceremonia: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.8804899412758!2d-58.588806623590166!3d-34.7081941630243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc5d9102ca28b%3A0xccda4e4dbf38252d!2sJea%20Casanova!5e0!3m2!1ses!2sar!4v1759797799906!5m2!1ses!2sar'
+        };
+        const mapModal = document.getElementById('mapModal');
+        const mapIframe = document.getElementById('mapIframe');
+
+        function openMap(locationKey) {
+            const src = mapIframes[locationKey];
+            if (src) {
+                mapIframe.src = src;
+                mapModal.style.display = 'flex';
+            }
+        }
+        function closeMap() {
+            mapModal.style.display = 'none';
+            mapIframe.src = '';
+        }
+        window.onclick = function (event) {
+            if (event.target == mapModal) {
+                closeMap();
             }
         }
 
-        // Ejecutar la función cada 1 segundo
-        const intervalo = setInterval(actualizarContador, 1000);
+        // --- JAVASCRIPT DEL CARRUSEL DE FOTOS ---
+        const track = document.getElementById('carouselTrack');
+        const items = document.querySelectorAll('.carousel-item');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
 
-        // Llamar a la función al inicio para evitar un retraso de 1 segundo
-        actualizarContador();
+        let currentIndex = 0;
+        const totalItems = items.length;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            track.style.transform = 'translateX(' + offset + '%)';
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
     </script>
-
 </body>
 
 </html>
