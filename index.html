@@ -35,6 +35,17 @@
             box-sizing: border-box;
         }
 
+        /* Estilo para ocultar el reproductor de música */
+        #musicPlayer {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: -10;
+        }
+
         /* Contenedor principal: Se adapta al 90% del ancho y tiene un máximo */
         .invitation-container {
             padding: 50px 30px;
@@ -341,7 +352,37 @@
             font-weight: 700;
         }
 
-        /* Media Query para escritorio (aplica solo cuando el ancho es mayor a 600px) */
+        /* --- NUEVO ESTILO: BOTÓN RSVP --- */
+        .rsvp-container {
+            margin-top: 30px;
+            padding: 20px 0;
+            border-top: 1px solid var(--color-accent);
+        }
+
+        .rsvp-button {
+            display: inline-block;
+            background-color: #5cb85c;
+            /* Un color de acento para la acción (verde o el que desees) */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .rsvp-button:hover {
+            background-color: #4cae4c;
+        }
+
+
+        /* Media Query para escritorio */
         @media (min-width: 600px) {
             .invitation-container {
                 padding: 50px;
@@ -357,13 +398,19 @@
 
             .event-details {
                 flex-direction: row;
-                /* Pone las tarjetas de evento lado a lado */
             }
         }
     </style>
 </head>
 
 <body>
+    <div id="musicPlayer">
+        <iframe width="1" height="1"
+            src="https://www.youtube.com/embed/z-sLzBFZ2L4?autoplay=1&mute=0&controls=0&loop=1&playlist=z-sLzBFZ2L4"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+    </div>
+
     <div class="invitation-container">
 
         <div class="names">
@@ -373,7 +420,7 @@
         </div>
 
         <div class="intro">
-            <p>¡Nos casamos!</p>
+            <p>¡Nos casamos! </p>
         </div>
 
         <div class="countdown-timer">
@@ -448,7 +495,8 @@
         <div class="music-section">
             <h5>¿Qué canciones no pueden faltar en la fiesta?</h5>
             <p>¡Queremos crear una lista inolvidable!</p>
-            <a href="#AÑADIR_ENLACE_AQUI" target="_blank" class="suggest-button">SUGERIR CANCIÓN</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYU9AU6VPBuuPs1Yhryd0Nm7fC9wKhYtgc5kEFETBBIsPTTA/viewform?embedded=true"
+                target="_blank" class="suggest-button">SUGERIR CANCIÓN</a>
         </div>
 
         <div class="dress-code-section">
@@ -456,9 +504,15 @@
             <p>Les pedimos asistir con **Vestimenta Elegante Sport**</p>
         </div>
 
-        <p class="serif-font" style="margin-top: 40px; font-style: italic;">¡Confirmá tu asistencia antes del
-            01/11/2025!</p>
-
+        <div class="rsvp-container">
+            <p class="serif-font" style="margin-bottom: 15px; font-weight: 700;">
+                ¡Confirmá tu asistencia antes del 10/11/2025!
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScvX4alWBhHhmQTcJzZjNYuciBBl9Tqpu4EgQiMUg-GszI_g/viewform?embedded=true"
+                target="_blank" class="suggest-button">
+                CONFIRMAR ASISTENCIA
+            </a>
+        </div>
     </div>
 
     <div class="map-modal" id="mapModal">
