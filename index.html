@@ -400,6 +400,44 @@
                 flex-direction: row;
             }
         }
+
+        /* Busca este bloque en tu CSS y REEMPLÁZALO: */
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            /* Permite que la altura de la imagen determine la altura del contenedor */
+            display: block;
+            border-radius: 5px;
+
+            /* CAMBIO CLAVE: Usa 'contain' para que la imagen no se corte */
+            object-fit: contain;
+
+            /* REMOVER (Opcional): Si quieres tener un espacio blanco alrededor de fotos largas, puedes dejar un max-height: */
+            max-height: 400px;
+            *
+
+            /* Y busca este bloque para eliminar la altura fija del contenedor (si la habías agregado) */
+            .carousel-item {
+                min-width: 100%;
+                box-sizing: border-box;
+                flex-shrink: 0;
+                /* REMOVER: No definimos altura fija aquí, la imagen la definirá */
+                /* height: 400px; */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* En la Media Query de móviles (@media (max-width: 480px)) */
+            @media (max-width: 480px) {
+                /* ... otros estilos ... */
+
+                .carousel-item {
+                    height: auto;
+                    /* Asegura que la altura sea automática en móvil también */
+                }
+            }
+        }
     </style>
 </head>
 
@@ -473,16 +511,19 @@
 
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-item">
-                        <img src="./foto-mili-gonza-1.jpg" alt="Mili y Gonza 1">
+                        <img src="./foto-mili-gonza-1.jpeg" alt="Mili y Gonza 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="./foto-mili-gonza-2.jpg" alt="Mili y Gonza 2">
+                        <img src="./foto-mili-gonza-2.jpeg" alt="Mili y Gonza 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="./foto-mili-gonza-3.jpg" alt="Mili y Gonza 3">
+                        <img src="./foto-mili-gonza-3.jpeg" alt="Mili y Gonza 3">
                     </div>
                     <div class="carousel-item">
-                        <img src="./foto-mili-gonza-4.jpg" alt="Mili y Gonza 4">
+                        <img src="./foto-mili-gonza-4.jpeg" alt="Mili y Gonza 4">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./foto-mili-gonza-5.jpeg" alt="Mili y Gonza 5">
                     </div>
                 </div>
 
