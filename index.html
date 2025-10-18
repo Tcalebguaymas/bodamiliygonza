@@ -66,7 +66,6 @@
         .names h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5em;
-            /* Tamaño ajustado para móvil */
             color: var(--color-primary);
             margin: -10px 0;
             line-height: 1.1;
@@ -106,7 +105,6 @@
         .countdown-unit span {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2em;
-            /* Tamaño clave para móvil */
             font-weight: 700;
             color: var(--color-primary);
             line-height: 1;
@@ -124,10 +122,36 @@
         .event-details {
             display: flex;
             flex-direction: column;
-            /* FORZAMOS APILAMIENTO EN CELULAR */
             gap: 30px;
             margin-top: 30px;
         }
+
+        /* NUEVO CONTENEDOR PARA EL ICONO Y TÍTULO (APILADOS Y CENTRADOS) */
+        /* Aplicamos esta clase tanto a ceremonia como a salón */
+        .ceremony-header,
+        .salon-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* ESTILO DEL ÍCONO GRANDE Y CENTRADO */
+        .event-icon {
+            height: 80px;
+            /* Tamaño más grande */
+            width: auto;
+            margin-bottom: 5px;
+        }
+
+        .event-details h4 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8em;
+            color: var(--color-primary);
+            margin: 0;
+            /* Aseguramos que no haya margen extra */
+        }
+
 
         .ceremonia,
         .salon {
@@ -136,13 +160,6 @@
             border: 1px solid var(--card-border);
             background-color: var(--card-bg);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
-        }
-
-        .event-details h4 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8em;
-            color: var(--color-primary);
-            margin-bottom: 5px;
         }
 
         .event-details p {
@@ -188,7 +205,6 @@
             padding: 0;
             border-radius: 5px;
             max-width: 95%;
-            /* Más ancho en móvil */
             max-height: 95%;
             position: relative;
             overflow: hidden;
@@ -198,7 +214,6 @@
             display: block;
             width: 100%;
             height: 90vh;
-            /* Ajuste para que el mapa quepa bien */
             min-width: 300px;
             min-height: 300px;
         }
@@ -244,6 +259,9 @@
             min-width: 100%;
             box-sizing: border-box;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .carousel-item img {
@@ -251,6 +269,8 @@
             height: auto;
             display: block;
             border-radius: 5px;
+            object-fit: contain;
+            max-height: 400px;
         }
 
         .carousel-nav-button {
@@ -261,7 +281,6 @@
             color: white;
             border: none;
             padding: 8px;
-            /* Padding más pequeño en móvil */
             cursor: pointer;
             z-index: 10;
             opacity: 0.8;
@@ -304,7 +323,6 @@
         .music-section p {
             font-family: 'Great Vibes', cursive;
             font-size: 2em;
-            /* Ajuste para móvil */
             color: var(--color-primary);
             margin-top: 0;
             margin-bottom: 20px;
@@ -339,7 +357,6 @@
         .dress-code-section h5 {
             font-family: 'Great Vibes', cursive;
             font-size: 1.8em;
-            /* Ajuste para móvil */
             color: var(--color-primary);
             margin-bottom: 5px;
             line-height: 1;
@@ -352,7 +369,7 @@
             font-weight: 700;
         }
 
-        /* --- NUEVO ESTILO: BOTÓN RSVP --- */
+        /* --- ESTILO BOTÓN RSVP --- */
         .rsvp-container {
             margin-top: 30px;
             padding: 20px 0;
@@ -361,8 +378,7 @@
 
         .rsvp-button {
             display: inline-block;
-            background-color: #5cb85c;
-            /* Un color de acento para la acción (verde) */
+            background-color: var(--color-primary);
             color: white;
             border: none;
             padding: 12px 25px;
@@ -378,7 +394,7 @@
         }
 
         .rsvp-button:hover {
-            background-color: #4cae4c;
+            background-color: #8b6e61;
         }
 
 
@@ -398,44 +414,6 @@
 
             .event-details {
                 flex-direction: row;
-            }
-        }
-
-        /* Busca este bloque en tu CSS y REEMPLÁZALO: */
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            /* Permite que la altura de la imagen determine la altura del contenedor */
-            display: block;
-            border-radius: 5px;
-
-            /* CAMBIO CLAVE: Usa 'contain' para que la imagen no se corte */
-            object-fit: contain;
-
-            /* REMOVER (Opcional): Si quieres tener un espacio blanco alrededor de fotos largas, puedes dejar un max-height: */
-            max-height: 400px;
-            *
-
-            /* Y busca este bloque para eliminar la altura fija del contenedor (si la habías agregado) */
-            .carousel-item {
-                min-width: 100%;
-                box-sizing: border-box;
-                flex-shrink: 0;
-                /* REMOVER: No definimos altura fija aquí, la imagen la definirá */
-                /* height: 400px; */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            /* En la Media Query de móviles (@media (max-width: 480px)) */
-            @media (max-width: 480px) {
-                /* ... otros estilos ... */
-
-                .carousel-item {
-                    height: auto;
-                    /* Asegura que la altura sea automática en móvil también */
-                }
             }
         }
     </style>
@@ -486,7 +464,10 @@
 
         <div class="event-details">
             <div class="ceremonia">
-                <h4>Ceremonia</h4>
+                <div class="ceremony-header">
+                    <h4>Ceremonia</h4>
+                    <img src="./icono-iglesia.png" alt="Icono Iglesia" class="event-icon">
+                </div>
                 <p>Iglesia JeaCasanova</p>
                 <p>Hora: 19:00 hs</p>
                 <p>Dirección: Juan Manuel de Rosas 7354, Casanova</p>
@@ -494,7 +475,9 @@
             </div>
 
             <div class="salon">
-                <h4>Salón</h4>
+                <div class="salon-header">
+                    <h4>Salón</h4> <img src="./icono-copas.png" alt="Icono Copas" class="event-icon">
+                </div>
                 <p>Jackson Eventos</p>
                 <p>Hora: 21:00 hs</p>
                 <p>Dirección: Av. Gaona 1722, Ramos Mejia</p>
@@ -534,7 +517,7 @@
         </div>
 
         <div class="music-section">
-            <h5>¿Qué canciones no pueden faltar en la fiesta?</h5>
+            <h5>¿Qué cancion no puede faltar en la fiesta?</h5>
             <p>¡Queremos crear una lista inolvidable!</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYU9AU6VPBuuPs1Yhryd0Nm7fC9wKhYtgc5kEFETBBIsPTTA/viewform?embedded=true"
                 target="_blank" class="suggest-button">SUGERIR CANCIÓN</a>
@@ -542,17 +525,22 @@
 
         <div class="dress-code-section">
             <h5>Código de Vestimenta</h5>
-            <p>Les pedimos asistir con **Vestimenta Elegante Sport**</p>
+            <img src="./icono-vestimenta.png" alt="Icono Vestimenta" class="event-icon"
+                style="height: 100px; margin-bottom: 5px;">
+            <p> Vestimenta Elegante Sport</p>
         </div>
 
         <div class="rsvp-container">
-            <p class="serif-font" style="margin-bottom: 15px; font-weight: 700;">
-                ¡Confirmá tu asistencia antes del 10/11/2025!
-            </p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScvX4alWBhHhmQTcJzZjNYuciBBl9Tqpu4EgQiMUg-GszjI_g/viewform?embedded=true"
-                target="_blank" class="suggest-button">
+                target="_blank" class="rsvp-button">
                 CONFIRMAR ASISTENCIA
+
             </a>
+            <p><img src="./icono-rsvp.png" alt="Icono RSVP" class="event-icon"
+                    style="height: 100px; margin-bottom: 10px;"></p>
+            <p class="serif-font" style="margin-bottom: 5px; font-weight: 700;"> ¡Confirmá tu asistencia antes del
+                10/11/2025!
+            </p>
         </div>
     </div>
 
