@@ -9,6 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
 
     <style>
         /* --- VARIABLES Y ESTILOS BASE --- */
@@ -40,11 +41,50 @@
             position: absolute;
             left: -9999px;
             top: -9999px;
-            width: 1px;
-            height: 1px;
+            width: 0;
+            height: 0;
             overflow: hidden;
             z-index: -10;
         }
+
+        /* El iframe real de YouTube dentro del div oculto */
+        #ytPlayer {
+            width: 1px;
+            height: 1px;
+        }
+
+        /* --- ESTILO DEL BOTÓN DE MÚSICA --- */
+        .music-control {
+            /* Ajustado el margen para que no moleste a la alineación del contenedor principal */
+            margin: 0;
+            padding-bottom: 20px;
+        }
+
+        #musicButton {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            margin: 10px auto 0;
+            /* Centrado y pequeño margen superior para separarlo de la fecha */
+        }
+
+        #musicButton:hover {
+            background-color: #8b6e61;
+        }
+
+        #musicButton i {
+            margin-right: 8px;
+        }
+
+        /* FIN ESTILO BOTÓN MÚSICA */
 
         /* Contenedor principal: Se adapta al 90% del ancho y tiene un máximo */
         .invitation-container {
@@ -186,7 +226,7 @@
             background-color: #8b6e61;
         }
 
-        /* --- MODAL DE MAPAS (Optimizado para cubrir toda la pantalla) --- */
+        /* --- MODAL DE MAPAS (sin cambios) --- */
         .map-modal {
             position: fixed;
             top: 0;
@@ -268,9 +308,9 @@
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 5px;
+            border-radius: 10px;
             object-fit: contain;
-            max-height: 400px;
+            max-height: 500px;
         }
 
         .carousel-nav-button {
@@ -369,6 +409,22 @@
             font-weight: 700;
         }
 
+        .gifts-section h5 {
+            /* Usa el estilo de título cursivo */
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.9em;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .gifts-section p {
+            /* Estilo para el texto de la sección */
+            font-size: 1em;
+            margin-top: 10px;
+            color: var(--color-secondary);
+        }
+
         /* --- ESTILO BOTÓN RSVP --- */
         .rsvp-container {
             margin-top: 30px;
@@ -421,12 +477,11 @@
 
 <body>
     <div id="musicPlayer">
-        <iframe width="1" height="1"
-            src="https://www.youtube.com/embed/z-sLzBFZ2L4?autoplay=1&mute=0&controls=0&loop=1&playlist=z-sLzBFZ2L4"
+        <iframe id="ytPlayer" width="1" height="1"
+            src="https://www.youtube.com/embed/z-sLzBFZ2L4?enablejsapi=1&autoplay=0&mute=0&controls=0&loop=1&playlist=z-sLzBFZ2L4"
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
         </iframe>
     </div>
-
     <div class="invitation-container">
 
         <div class="names">
@@ -459,9 +514,15 @@
         </div>
 
         <div class="date-location">
-            <h3 class="serif-font">Sábado, 29 de Noviembre de 2025</h3>
+            <h3 class="serif-font">Sábado 29 de Noviembre del 2025</h3>
         </div>
 
+        <div class="music-control">
+            <button id="musicButton">
+                <i class="fas fa-play" id="musicIcon"></i>
+                Música
+            </button>
+        </div>
         <div class="event-details">
             <div class="ceremonia">
                 <div class="ceremony-header">
@@ -469,7 +530,7 @@
                     <img src="./icono-iglesia.png" alt="Icono Iglesia" class="event-icon">
                 </div>
                 <p>Iglesia JeaCasanova</p>
-                <p>Hora: 19:00 hs</p>
+                <p>Hora: 17:30 hs</p>
                 <p>Dirección: Juan Manuel de Rosas 7354, Casanova</p>
                 <button class="map-button" onclick="openMap('ceremonia')">Cómo Llegar</button>
             </div>
@@ -479,14 +540,14 @@
                     <h4>Salón</h4> <img src="./icono-copas.png" alt="Icono Copas" class="event-icon">
                 </div>
                 <p>Jackson Eventos</p>
-                <p>Hora: 21:00 hs</p>
+                <p>Hora: 21:15 hs</p>
                 <p>Dirección: Av. Gaona 1722, Ramos Mejia</p>
                 <button class="map-button" onclick="openMap('salon')">Cómo Llegar</button>
             </div>
         </div>
 
         <div class="gallery-section">
-            <h2>Nuestros Momentos</h2>
+            <h2>Nosotros </h2>
             <div class="carousel-container">
                 <button id="prevButton" class="carousel-nav-button">
                     <i class="fas fa-chevron-left"></i>
@@ -520,14 +581,24 @@
             <h5>¿Qué cancion no puede faltar en la fiesta?</h5>
             <p>¡Queremos crear una lista inolvidable!</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYU9AU6VPBuuPs1Yhryd0Nm7fC9wKhYtgc5kEFETBBIsPTTA/viewform?embedded=true"
-                target="_blank" class="suggest-button">SUGERIR CANCIÓN</a>
+                target="_blank" class="suggest-button">SUGERIR UNa CANCIÓN</a>
         </div>
+
 
         <div class="dress-code-section">
             <h5>Código de Vestimenta</h5>
             <img src="./icono-vestimenta.png" alt="Icono Vestimenta" class="event-icon"
                 style="height: 100px; margin-bottom: 5px;">
-            <p> Vestimenta Elegante Sport</p>
+            <p> Elegante Sport</p>
+        </div>
+
+        <div class="gifts-section">
+            <h5>Regalo</h5>
+            <p class="serif-font" style="margin-bottom: 5px; font-weight: 700;">Nuesto mayor regalo es disfrutar con la
+                familia y amigos este momento tan importante...</p>
+            <p>Si aún así te gustaría hacernos un regalo te dejamos nuestro alias :</p>
+            <p style="font-weight: 700; margin-top: 15px;"> mili.gonza29</p>
+
         </div>
 
         <div class="rsvp-container">
@@ -553,6 +624,48 @@
     </div>
 
     <script>
+        // --- YOUTUBE PLAYER API SETUP (AÑADIDO) ---
+        let player;
+        let isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytPlayer', {
+                videoId: 'z-sLzBFZ2L4',
+                playerVars: {
+                    'autoplay': 0, // Inicia pausado
+                    'controls': 0,
+                    'loop': 1,
+                    'mute': 0, // Inicia sin sonido
+                    'playlist': 'z-sLzBFZ2L4'
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            document.getElementById('musicButton').addEventListener('click', toggleMusic);
+        }
+
+        function toggleMusic() {
+            const musicIcon = document.getElementById('musicIcon');
+
+            if (isPlaying) {
+                player.pauseVideo();
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-play');
+                isPlaying = false;
+            } else {
+                player.playVideo();
+                player.unMute();
+                musicIcon.classList.remove('fa-play');
+                musicIcon.classList.add('fa-pause');
+                isPlaying = true;
+            }
+        }
+        // --- FIN YOUTUBE PLAYER API SETUP ---
+
         // --- JAVASCRIPT DEL TEMPORIZADOR ---
         const weddingDate = new Date("November 29, 2025 18:00:00").getTime();
 
